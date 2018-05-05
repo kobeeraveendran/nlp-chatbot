@@ -18,3 +18,10 @@ for line in lines:
     splitline = line.split(' +++$+++ ')
     if len(splitline) == 5:
         id_to_line[splitline[0]] = splitline[4]
+
+conversation_list = []
+for conversation in conversations[:-1]:
+    splitconvos = conversation.split(' +++$+++ ')[-1][1:-1].replace("'", '').replace(' ', '')
+    splitbyid = splitconvos.split(',')
+    conversation_list.append(splitbyid)
+    
