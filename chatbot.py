@@ -81,3 +81,21 @@ for string in clean_questions + clean_answers:
             wordcount[word] = 1
 
 threshold = 10
+
+questionwordsbyid = {}
+word_num = 0
+
+# includes only the frequently-occuring words (those that have counts above threshold)
+for word, count in wordcount.items():
+    if count >= threshold:
+        questionwordsbyid[word] = word_num
+        word_num += 1
+        
+answerwordsbyid = {}
+word_num = 0
+
+for word, count in wordcount.items():
+    if count >= threshold:
+        answerwordsbyid[word] = word_num
+        word_num += 1
+
