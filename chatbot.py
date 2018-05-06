@@ -59,3 +59,25 @@ def clean_text(text):
     text = re.sub(r"won't", "will not", text)
     text = re.sub(r"can't", "cannot", text)
     text = re.sub(r"[-()\"#/@;:<>{}+=~|.?!,]", "", text)
+    return text
+
+clean_questions = []
+clean_answers = []
+
+for question in questions:
+    clean_questions.append(clean_text(question))
+
+for answer in answers:
+    clean_answers.append(clean_text(answer))
+
+wordcount = {}
+
+for string in clean_questions + clean_answers:
+    _wordlist = string.split(' ')
+    for word in _wordlist:
+        if word in wordcount:
+            wordcount[word] += 1
+        else:
+            wordcount[word] = 1
+
+threshold = 10
