@@ -99,3 +99,12 @@ for word, count in wordcount.items():
         answerwordsbyid[word] = word_num
         word_num += 1
 
+# add start of sentence and end of sentence tokens
+tokens = ['<PAD>', '<EOS>', '<OUT>', '<SOS>']
+
+lenquestions = len(questionwordsbyid)
+lenanswers =len(answerwordsbyid)
+
+for token in tokens:
+    questionwordsbyid[token] = lenquestions + 1
+    answerwordsbyid[token] = lenanswers + 1
