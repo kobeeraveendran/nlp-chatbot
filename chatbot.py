@@ -103,7 +103,7 @@ for word, count in wordcount.items():
 tokens = ['<PAD>', '<EOS>', '<OUT>', '<SOS>']
 
 lenquestions = len(questionwordsbyid)
-lenanswers =len(answerwordsbyid)
+lenanswers = len(answerwordsbyid)
 
 for token in tokens:
     questionwordsbyid[token] = lenquestions + 1
