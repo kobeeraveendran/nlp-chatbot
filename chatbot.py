@@ -108,3 +108,10 @@ lenanswers = len(answerwordsbyid)
 for token in tokens:
     questionwordsbyid[token] = lenquestions + 1
     answerwordsbyid[token] = lenanswers + 1
+
+# invert the mapping between the answers to int (id) dictionary
+answeridsbyword = {key: value for value, key in answerwordsbyid.items()}
+
+# append the end of string token to each answer
+for i in range(len(clean_answers)):
+    clean_answers[i] += ' <EOS>'
