@@ -1,1 +1,1 @@
-# Files for my implementation of an chatbot using common NLP algorithms
+# Files for my implementation of a chatbot using common NLP algorithms
