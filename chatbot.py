@@ -115,3 +115,29 @@ answeridsbyword = {key: value for value, key in answerwordsbyid.items()}
 # append the end of string token to each answer
 for i in range(len(clean_answers)):
     clean_answers[i] += ' <EOS>'
+
+# convert the text from questions/answers into integers, and 
+# replaces all the removed words with the OUT token
+questions_to_int = []
+
+for sentence in clean_questions:
+    ints = []
+    for words in sentence.split():
+        if word not in questionwordsbyid:
+            ints.append(questionwordsbyid['<OUT>'])
+        else:
+            ints.append(questionwordsbyid[word])
+
+    questions_to_int.append(ints)
+
+answers_to_int = []
+
+for sentence in clean_answers:
+    ints = []
+    for words in sentence.split():
+        if word not in answerwordsbyid:
+            ints.append(answerwordsbyid['<OUT>'])
+        else:
+            ints.append(answerwordsbyid[word])
+
+    answers_to_int.append(ints)
