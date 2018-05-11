@@ -141,3 +141,16 @@ for sentence in clean_answers:
             ints.append(answerwordsbyid[word])
 
     answers_to_int.append(ints)
+
+# sort question and answer pairs by length of the QUESTIONS
+# think of it like teaching humans; children start out with shorter
+# sentenced books, then gradually read longer sentences and books
+sorted_clean_questions = []
+sorted_clean_answers = []
+
+# sentence lengths: min 1, max 25
+for length in range(1, 26):
+    for i in enumerate(questions_to_int):
+        if len(i[1]) == length:
+            sorted_clean_questions.append(questions_to_int[i[0]])
+            sorted_clean_answers.append(answers_to_int[i[0]])
