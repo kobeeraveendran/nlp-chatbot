@@ -154,3 +154,27 @@ for length in range(1, 26):
         if len(i[1]) == length:
             sorted_clean_questions.append(questions_to_int[i[0]])
             sorted_clean_answers.append(answers_to_int[i[0]])
+
+
+###############################
+#        SEQ2SEQ MODEL        #
+###############################
+
+# create placeholders for input tensors
+def model_inputs():
+    inputs = tf.placeholder(dtype = tf.int32, shape = [None, None], name = 'input')
+    targets = tf.placeholder(dtype = tf.int32, shape = [None, None], name = 'target')
+    learning_rate = tf.placeholder(dtype = tf.float32, name = 'learning_rate')
+    # controls the dropout rate of neurons
+    keep_prob = tf.placeholder(dtype = tf.float32, name = 'keep_prob')
+
+    return inputs, targets, learning_rate, keep_prob
+
+# adds SOS token to targets, and excludes the last token
+def preprocess_targets(targets, word_to_int, batch_size):
+    left_side = tf.fill(dims = [batch_size, 1], value = word_to_int['<SOS>'])
+    # similar to python's slice(), but for tensors
+    right_side = tf.strided_slice(input_ = targets, begin = [0, 0], end = [batch_size, -1], strides = [1, 1])
+    preprocessed_target = tf.concat(values = [left_side, right_side], axis = 1)
+
+    return preprocessed_target
