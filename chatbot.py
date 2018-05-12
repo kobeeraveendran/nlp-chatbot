@@ -192,3 +192,7 @@ def encoder_rnn_layer(rnn_inputs, rnn_size, num_layers, keep_prob, sequence_leng
                                                        dtype = tf.float32)
     
     return encoder_state
+
+# decode training set
+def decode_training_set(encoder_state, decoder_cell, decoder_embedded_input, sequence_length, decoding_scope, output_function, keep_prob, batch_size):
+    attention_states = tf.zeros(shape = [batch_size, 1, decoder_cell.output_size])
